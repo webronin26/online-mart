@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/main_fragment">
+
+    <fragment
+        android:id="@+id/main_fragment"
+        android:name="com.webronin_26.online_mart.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_main_fragment_to_cart_fragment"
+            app:destination="@id/cart_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/category_fragment"
+        android:name="com.webronin_26.online_mart.category.CategoryFragment"
+        tools:layout="@layout/category_fragment"
+        android:label="CategoryFragment" />
+
+    <fragment
+        android:id="@+id/profile_fragment"
+        android:name="com.webronin_26.online_mart.profile.ProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/profile_fragment" >
+        <action
+            android:id="@+id/action_profile_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
+        <action
+            android:id="@+id/action_profile_fragment_to_query_order_list_fragment"
+            app:destination="@id/query_order_list_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cart_fragment"
+        android:name="com.webronin_26.online_mart.cart.CartFragment"
+        tools:layout="@layout/cart_fragment"
+        android:label="CartFragment" >
+        <action
+            android:id="@+id/action_cart_fragment_to_cart_success_fragment"
+            app:destination="@id/cart_success_fragment" />
+    </fragment>
+
+    <activity
+        android:id="@+id/login_activity"
+        android:name="com.webronin_26.online_mart.login.LoginActivity"
+        tools:layout="@layout/login_activity"
+        android:label="LoginActivity" />
+
+    <activity
+        android:id="@+id/search_activity"
+        android:name="com.webronin_26.online_mart.search.SearchActivity"
+        android:label="SearchActivity" />
+
+    <fragment
+        android:id="@+id/query_order_list_fragment"
+        android:name="com.webronin_26.online_mart.query_order_list.QueryOrderListFragment"
+        android:label="QueryOrderListFragment" >
+        <action
+            android:id="@+id/action_query_order_list_fragment_to_query_order_fragment"
+            app:destination="@id/query_order_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/query_order_fragment"
+        android:name="com.webronin_26.online_mart.query_order.QueryOrderFragment"
+        android:label="QueryOrderFragment" >
+        <action
+            android:id="@+id/action_query_order_fragment_to_query_order_list_fragment"
+            app:destination="@id/query_order_list_fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cart_success_fragment"
+        android:name="com.webronin_26.online_mart.cart.CartSuccessFragment"
+        android:label="cart_success_fragment"
+        tools:layout="@layout/cart_success_fragment" >
+        <action
+            android:id="@+id/action_cart_success_fragment_to_main_fragment"
+            app:destination="@id/main_fragment" />
+    </fragment>
+</navigation>

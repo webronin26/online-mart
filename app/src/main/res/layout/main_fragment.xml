@@ -1,0 +1,880 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.webronin_26.online_mart.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".main.MainActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/main_tool_bar" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="5"
+                    android:clickable="true"
+                    android:id="@+id/main_tool_bar_search_linear_layout"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/grey_rounded_corner"
+                    android:orientation="horizontal"
+                    android:focusable="true">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/main_tool_bar_search"
+                        android:layout_marginStart="10dp" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="搜尋物件"
+                        android:textColor="#0A0A0A"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="10dp" />
+                </LinearLayout>
+
+                <ImageButton
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:id="@+id/main_tool_bar_shopping_cart_button"
+                    android:src="@drawable/main_tool_bar_shopping_cart"
+                    android:background="#00000000"
+                    android:layout_gravity="center" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:id="@+id/main_swipe_refresh_layout"
+            app:layout_constraintTop_toBottomOf="@+id/main_tool_bar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:id="@+id/main_linear_layout">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/promote_image"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1" >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="熱銷榜"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:background="@color/theme_orange"
+                                android:textColor="@color/white"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="start"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="20dp"
+                            android:text="了解更多"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/orange"/>
+
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_hot_sales_01_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/hot_sales_image01"
+                                    app:set_image_view_bitmap="@{viewmodel.hotSalesImage01}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.hotSalesText01}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.hotSalesPrice01}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="match_parent"/>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_hot_sales_02_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/hot_sales_image02"
+                                    app:set_image_view_bitmap="@{viewmodel.hotSalesImage02}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.hotSalesText02}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.hotSalesPrice02}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_hot_sales_03_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/hot_sales_image03"
+                                    app:set_image_view_bitmap="@{viewmodel.hotSalesImage03}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.hotSalesText03}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.hotSalesPrice03}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_hot_sales_04_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/hot_sales_image04"
+                                    app:set_image_view_bitmap="@{viewmodel.hotSalesImage04}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.hotSalesText04}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.hotSalesPrice04}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1" >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="最新上架"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:background="@color/theme_orange"
+                                android:textColor="@color/white"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="start"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="20dp"
+                            android:text="了解更多"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/orange"/>
+
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_latest_01_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/latest_image_01"
+                                    app:set_image_view_bitmap="@{viewmodel.latestImage01}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.latestText01}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.latestPrice01}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="match_parent"/>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_latest_02_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/latest_image_02"
+                                    app:set_image_view_bitmap="@{viewmodel.latestImage02}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.latestText02}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.latestPrice02}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_latest_03_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/latest_image_03"
+                                    app:set_image_view_bitmap="@{viewmodel.latestImage03}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.latestText03}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.latestPrice03}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_latest_04_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/latest_image_04"
+                                    app:set_image_view_bitmap="@{viewmodel.latestImage04}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.latestText04}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.latestPrice04}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1" >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="每日推薦"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:background="@color/theme_orange"
+                                android:textColor="@color/white"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="start"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="20dp"
+                            android:text="了解更多"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/orange"/>
+
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_dailyRecommended_01_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/daily_recommended_image_01"
+                                    app:set_image_view_bitmap="@{viewmodel.dailyRecommendedImage01}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.dailyRecommendedText01}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.dailyRecommendedPrice01}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="match_parent"/>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_dailyRecommended_02_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/daily_recommended_image_02"
+                                    app:set_image_view_bitmap="@{viewmodel.dailyRecommendedImage02}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.dailyRecommendedText02}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.dailyRecommendedPrice02}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_dailyRecommended_03_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/daily_recommended_image_03"
+                                    app:set_image_view_bitmap="@{viewmodel.dailyRecommendedImage03}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.dailyRecommendedText03}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.dailyRecommendedPrice03}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_dailyRecommended_04_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/daily_recommended_image_04"
+                                    app:set_image_view_bitmap="@{viewmodel.dailyRecommendedImage04}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.dailyRecommendedText04}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.dailyRecommendedPrice04}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="20dp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="20dp"
+                            android:layout_weight="1" >
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="你可能喜歡"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:background="@color/theme_orange"
+                                android:textColor="@color/white"
+                                android:gravity="center_vertical"
+                                android:layout_gravity="start"/>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="20dp"
+                            android:text="了解更多"
+                            android:gravity="center_vertical"
+                            android:textColor="@color/orange"/>
+
+                    </LinearLayout>
+
+                    <HorizontalScrollView
+                        android:layout_width="wrap_content"
+                        android:layout_height="150dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="150dp"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_mayLike_01_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/may_like_image_01"
+                                    app:set_image_view_bitmap="@{viewmodel.mayLikeImage01}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.mayLikeText01}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.mayLikePrice01}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <View
+                                android:layout_width="15dp"
+                                android:layout_height="match_parent"/>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_mayLike_02_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/may_like_image_02"
+                                    app:set_image_view_bitmap="@{viewmodel.mayLikeImage02}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.mayLikeText02}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.mayLikePrice02}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_mayLike_03_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/may_like_image_03"
+                                    app:set_image_view_bitmap="@{viewmodel.mayLikeImage03}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.mayLikeText03}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.mayLikePrice03}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="150dp"
+                                android:layout_height="120dp"
+                                android:layout_gravity="center_vertical"
+                                android:padding="10dp"
+                                android:orientation="vertical"
+                                android:id="@+id/main_mayLike_04_layout" >
+
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="3"
+                                    android:layout_gravity="center"
+                                    android:id="@+id/may_like_image_04"
+                                    app:set_image_view_bitmap="@{viewmodel.mayLikeImage04}"/>
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    android:lines="1"
+                                    android:text="@{viewmodel.mayLikeText04}"
+                                    android:textColor="@color/black" />
+
+                                <androidx.appcompat.widget.AppCompatTextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1"
+                                    android:gravity="center"
+                                    app:set_text_view_float="@{viewmodel.mayLikePrice04}"
+                                    android:textColor="@color/dark_red" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

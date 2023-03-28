@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.webronin_26.online_mart.search.SearchViewModel" />
+
+        <variable
+            name="product"
+            type="com.webronin_26.online_mart.data.remote.Response.SearchProduct" />
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/search_item_linear_layout">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:id="@+id/search_item_image_view"
+            android:layout_margin="3dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:id="@+id/search_item_name_text_view"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:text="@{product.name}" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/search_item_price_text_view"
+                android:textColor="@color/red"
+                android:padding="5dp"
+                app:set_text_view_float="@{product.price}" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>
